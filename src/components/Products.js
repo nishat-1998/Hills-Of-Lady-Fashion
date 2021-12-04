@@ -1,17 +1,35 @@
 import React, { Component } from 'react';
 import formatCurrency from '../Util';
+import Fade from "react-reveal/Fade";
+import Modal from"react-modal";
+import Zoom  from "react-reveal/Zoom";
+
 
 
 export default class Products extends Component {
-   
+   constructor(props){
+       super(props);
+       this.state={
+           product:null,
+
+       }
+   }
+   openModal=(product)=>{
+       this.setState({product})
+   }
+   closeModal=() =>{
+       this.setState({product:null});
+   }
     render() {
+        const {product}=this.state;
         return (
             <div>
+                <Fade bottom cascade={true}>
                 <ul className="products">
            {this.props.products.map((product) => (
                <li key={product._id}>
                <div className="product">
-                <a href={"#" + product._id}>
+                <a href={"#" + product._id} onClick={()=> this.openModal(product)}>
                     <img src={product.image} alt={product.title}></img>
                </a>
                <p>
@@ -21,12 +39,24 @@ export default class Products extends Component {
                    <div>
                        { formatCurrency(product.price)}
                        </div>
-                       <button className="button-primary">Add To Cart</button>
+                       <button onClick={() => this.props.addToCart(product)} 
+                       className="button-primary">Add To Cart</button>
                    </div>
                </div>
                </li>
            ))}
                 </ul>
+                </Fade>
+                {
+                    product &&
+                    <Modal isOpen={true} onAfterClose={this.closeModal}>
+                        <Zoom>
+                            <button className="close-modal" onClick={this.closeModal}> X</button>
+                         <div>Modal</div>
+                        </Zoom>
+                    </Modal>
+
+                }
             </div>
         )
     }
