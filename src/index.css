@@ -32,7 +32,7 @@ a {
   text-decoration: none;
 }
 a:hover {
-  color: #ff8000;
+  color: #ff00b3;
 }
 header {
   grid-area: header;
@@ -111,14 +111,14 @@ footer {
 .button {
   padding: 1rem;
   border: 0.1rem #ffffff solid;
-  background-color: #f0f0f0;
+  background-color: #f33f5d;
   cursor: pointer;
 }
 .button:hover {
   border: 0.1rem #ffffff solid;
 }
-.button-primary {
-  background-color: #40f075;
+.button.primary {
+  background-color: #ff00b3;
 }
 
 
@@ -194,4 +194,29 @@ form {
 input {
   padding: 1rem;
   border: 0.1rem #c0c0c0 solid;
+}
+
+
+/*product details*/
+.product-details{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content: space-between;
+  max-width: 100vh;
+}
+.product-details img{
+  max-width: 46rem;
+  max-height: 100vh;
+  margin: 0 auto;
+
+}
+.product-details-des{
+  flex: 1 1;
+  margin: 1rem;
+}
+.close-modal{
+  position: absolute;
+  right: 1rem;
+  top: 2.5rem;
+  z-index: 1000;
 }

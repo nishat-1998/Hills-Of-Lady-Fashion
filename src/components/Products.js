@@ -40,7 +40,7 @@ export default class Products extends Component {
                        { formatCurrency(product.price)}
                        </div>
                        <button onClick={() => this.props.addToCart(product)} 
-                       className="button-primary">Add To Cart</button>
+                       className="button primary">Add To Cart</button>
                    </div>
                </div>
                </li>
@@ -52,7 +52,35 @@ export default class Products extends Component {
                     <Modal isOpen={true} onAfterClose={this.closeModal}>
                         <Zoom>
                             <button className="close-modal" onClick={this.closeModal}> X</button>
-                         <div>Modal</div>
+                         <div className="product-details">
+                            <img src={product.image} alt={product.title}></img>
+                            <div className="product-details-des">
+                                <p> <strong>{product.title}</strong></p>
+                                <p>{product.description}</p>
+                                <p>
+                                    Available Sizes
+                                    {
+                                        product.availableSizes.map((x) =>(
+                                            <span> 
+                                                {" "}
+                                                <button className="button">{x}
+                                                </button>
+                                                </span>
+                                        ))
+                                    }
+                                   </p>
+                                   <div>
+                                       <div>
+                                           {formatCurrency(product.price)}</div>
+                                           <button className="button primary" onClick={()=>{
+                                               this.props.addToCart(product);
+                                               this.closeModal();
+                                           }}>
+                                             Add To Cart
+                                           </button>
+                                       </div>
+                                </div>
+                         </div>
                         </Zoom>
                     </Modal>
 

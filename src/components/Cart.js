@@ -9,6 +9,7 @@ export default class cart extends Component {
       name:"",
       email:"",
       address:"",
+      phone:"",
       showCheckout : false,
     };
   }
@@ -21,6 +22,7 @@ export default class cart extends Component {
       name: this.state.name,
       email: this.state.email,
       address: this.state.address,
+      phone: this.state.phone,
       cartItems: this.state.cartItems,
     }
     this.props.createOder(order);
@@ -76,7 +78,7 @@ export default class cart extends Component {
                                <div>
                                  <button onClick= {()=>{
                                    this.setState({showCheckout: true});
-                                 }} className="button-primary">Proceed</button>
+                                 }} className="button primary">Proceed</button>
                                </div>
                            </div>
                            </div>
@@ -85,6 +87,16 @@ export default class cart extends Component {
                                <div className="cart">
                                <form onSubmit={this.createOder}>
                                <ul className="form-container">
+                     
+                      <li>
+                        <label>Name</label>
+                        <input
+                          name="name"
+                          type="text"
+                          required
+                          onChange={this.handleInput}
+                        ></input>
+                      </li>
                       <li>
                         <label>Email</label>
                         <input
@@ -95,10 +107,10 @@ export default class cart extends Component {
                         ></input>
                       </li>
                       <li>
-                        <label>Name</label>
+                        <label>Phone</label>
                         <input
-                          name="name"
-                          type="text"
+                          name="phone"
+                          type="phone"
                           required
                           onChange={this.handleInput}
                         ></input>
@@ -113,7 +125,7 @@ export default class cart extends Component {
                         ></input>
                       </li>
                       <li>
-                        <button className="button-primary" type="submit">
+                        <button className="button primary" type="submit">
                           Checkout
                         </button>
                       </li>
